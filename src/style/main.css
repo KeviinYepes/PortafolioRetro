@@ -1,0 +1,120 @@
+/* IMPORTANTE: Fuente retro para títulos (opcional pero recomendada) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    /* CAMBIO: Fondo azul oscuro profundo tipo Codédex en lugar de negro puro */
+    background-color: #0d1117; 
+    color: #e6edf3;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    cursor: url('../data/cursor.png'), auto;
+}
+
+/* --- MENÚ DE NAVEGACIÓN --- */
+.menu {
+    /* CAMBIO: Fondo con ligera transparencia y borde inferior neón */
+    background-color: rgba(13, 17, 23, 0.95);
+    text-align: center;
+    padding: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #30363d;
+}
+
+.menu a {
+    color: #8b949e; /* Color gris suave por defecto */
+    text-decoration: none;
+    margin: 0 1.5rem;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* TU DISEÑO: Mantengo tu efecto de hover que está muy bacano */
+.menu a:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #ff00ff; 
+    box-shadow: 4px 4px 0px #00f2ff; 
+    font-weight: bold;
+    transform: translateY(-2px);
+}
+
+.About_me{
+    text-align: center;
+}
+/* --- SECCIÓN DE PERFIL / BANNER --- */
+.picture-profile {
+    width: 95%; /* Un poco de margen a los lados */
+    max-width: 1200px;
+    height: 400px;
+    margin: 20px auto; /* Centra el contenedor */
+    background-image: url('../data/8bits.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 15px; /* Esquinas más redondeadas tipo Card */
+    border: 3px solid #30363d;
+    overflow: hidden; /* Para que la imagen no se salga de las esquinas */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.picture-profile img {
+    position: absolute;
+    width: 280px; /* Tamaño un poco más ajustado */
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #ffffff;
+    bottom: 20px;
+    left: 40px;
+    /* EFECTO NUEVO: Sombra blanca para resaltar la foto del fondo pixelado */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* --- NUEVOS ESTILOS: CARDS DE PROYECTOS (Inspiración Codédex) --- */
+.project-section {
+    padding: 40px 10%;
+}
+
+h1, h2 {
+    font-family: 'Press Start 2P', cursive; /* Fuente pixel para títulos */
+    color: #ffffff; /* Amarillo vibrante */
+    font-size: 1.5rem;
+}
+
+.project-card {
+    background-color: #161b22;
+    border: 2px solid #30363d;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s, transform 0.2s;
+}
+
+.project-card:hover {
+    border-color: #58a6ff; /* El borde brilla al pasar el cursor */
+    transform: scale(1.01);
+}
+
+.btn-view {
+    display: inline-block;
+    background-color: #2ea44f; /* Verde "Start Game" */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 4px solid #216e39; /* Efecto 3D de botón presionado */
+}
+
+.btn-view:active {
+    border-bottom: 0;
+    transform: translateY(4px);
+}
