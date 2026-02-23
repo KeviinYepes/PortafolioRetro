@@ -1,8 +1,6 @@
-/* IMPORTANTE: Fuente retro para títulos (opcional pero recomendada) */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-    /* CAMBIO: Fondo azul oscuro profundo tipo Codédex en lugar de negro puro */
     background-color: #0d1117; 
     color: #e6edf3;
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -11,9 +9,7 @@ body {
     cursor: url('../data/cursor.png'), auto;
 }
 
-/* --- MENÚ DE NAVEGACIÓN --- */
 .menu {
-    /* CAMBIO: Fondo con ligera transparencia y borde inferior neón */
     background-color: rgba(13, 17, 23, 0.95);
     text-align: center;
     padding: 1.2rem;
@@ -35,7 +31,6 @@ body {
     letter-spacing: 1px;
 }
 
-/* TU DISEÑO: Mantengo tu efecto de hover que está muy bacano */
 .menu a:hover {
     background-color: #ffffff;
     color: #000000;
@@ -48,6 +43,15 @@ body {
 .About_me{
     text-align: center;
 }
+
+.About_me p{
+    max-width: 1200px;
+    margin: 20px auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #c9d1d9;
+}
+
 /* --- SECCIÓN DE PERFIL / BANNER --- */
 .picture-profile {
     width: 95%; /* Un poco de margen a los lados */
@@ -65,6 +69,27 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
+.picture-profile h1 {
+    position: absolute;
+    bottom: 60px;
+    right: 40px; /* Movido a la derecha para balancear */
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #000;
+    font-size: 2.2rem;
+}
+
+.picture-profile h2 {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: var(--retro-cyan);
+    text-shadow: 2px 2px 0px #000;
+}
+
+
 .picture-profile img {
     position: absolute;
     width: 280px; /* Tamaño un poco más ajustado */
@@ -79,42 +104,487 @@ body {
 }
 
 /* --- NUEVOS ESTILOS: CARDS DE PROYECTOS (Inspiración Codédex) --- */
-.project-section {
-    padding: 40px 10%;
+
+/* --- ESTILO GLOBAL PROYECTOS (Inspiración Codédex/Retro) --- */
+
+.Projects {
+    text-align: center;
+    padding: 60px 10%;
+    background-color: #0d1117; /* Fondo oscuro tipo GitHub/Codédex */
 }
 
-h1, h2 {
-    font-family: 'Press Start 2P', cursive; /* Fuente pixel para títulos */
-    color: #ffffff; /* Amarillo vibrante */
+.Projects h1 {
+    font-family: 'Press Start 2P', cursive; /* Asegúrate de importar esta fuente de Google Fonts */
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-shadow: 4px 4px 0px #3b8ab8;
+}
+
+/* Contenedor general de cada card */
+.Projects div[class^="p"] {
+    position: relative;
+    width: 100%; 
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    margin-bottom: 50px;
+    overflow: hidden;
+    
+    /* Efecto de borde y sombra sólida (Retro) */
+    border: 4px solid #b19517;
+    box-shadow: 12px 12px 0px #b3a529;
+    transition: transform 0.2s, box-shadow 0.2s;
+    
+    /* Configuración de fondo base */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.Projects div[class^="p"]:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 16px 16px 0px #fffc4d;
+}
+
+/* Ocultar la etiqueta img del HTML ya que usamos background-image */
+.Projects img {
+    display: none;
+}
+
+/* Títulos de los proyectos */
+.Projects h2 {
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
     font-size: 1.5rem;
-}
-
-.project-card {
-    background-color: #161b22;
-    border: 2px solid #30363d;
-    border-radius: 12px;
-    padding: 25px;
+    text-transform: uppercase;
     margin-bottom: 20px;
-    transition: border-color 0.3s, transform 0.2s;
+    text-shadow: 3px 3px 0px #000;
+    z-index: 2;
 }
 
-.project-card:hover {
-    border-color: #58a6ff; /* El borde brilla al pasar el cursor */
-    transform: scale(1.01);
-}
-
-.btn-view {
-    display: inline-block;
-    background-color: #2ea44f; /* Verde "Start Game" */
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    text-decoration: none;
+/* Párrafos */
+.Projects p {
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    max-width: 70%;
     font-weight: bold;
-    border-bottom: 4px solid #216e39; /* Efecto 3D de botón presionado */
+    text-align: center;
+    margin-bottom: 25px;
+    z-index: 2;
 }
 
-.btn-view:active {
+/* Botón estilo "Start Game" */
+.Projects button {
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    background-color: #555a13;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-bottom: 6px solid #a3832b;
+    border-radius: 4px;
+    transition: all 0.1s;
+    z-index: 2;
+}
+
+.Projects button:active {
     border-bottom: 0;
+    transform: translateY(6px);
+}
+
+/* --- ASIGNACIÓN DE IMÁGENES DE FONDO --- */
+
+/* Clase base para el overlay oscuro en todas las cards */
+.p1, .p2, .p3, .p4, .p5, .p6 {
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.6); /* Esto oscurece la imagen de fondo automáticamente */
+}
+
+.p1 { background-image: url("../data/kava.jpg"); }
+.p2 { background-image: url("../data/project2.jpg"); }
+.p3 { background-image: url("../data/project3.jpg"); }
+.p4 { background-image: url("../data/project4.jpg"); }
+.p5 { background-image: url("../data/project5.jpg"); }
+.p6 { background-image: url("../data/project6.jpg"); }
+
+
+/*Skills and contact*/
+
+/* --- SECCIÓN SKILLS --- */
+.Skills {
+    padding: 60px 10%;
+    text-align: center;
+}
+
+.Skills h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 50px;
+    text-shadow: 4px 4px 0px var(--accent-green, #394211);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.skill-category {
+    background-color: #161b22;
+    border: 3px solid #e3b341; /* Amarillo Retro */
+    padding: 25px;
+    box-shadow: 8px 8px 0px #8a6d25; /* Sombra sólida */
+    transition: transform 0.2s;
+    text-align: left;
+}
+
+.skill-category:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px #00f2ff;
+    border-color: #fff;
+}
+
+.skill-category h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    color: #e3b341;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-category h3 i {
+    color: #fff;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skill-category li {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    color: #c9d1d9;
+    padding: 8px 0;
+    border-bottom: 1px dashed #30363d;
+}
+
+.skill-category li::before {
+    content: "> ";
+    color: #2ea44f;
+    font-weight: bold;
+}
+
+/* --- SECCIÓN CONTACTO --- */
+.Contact {
+    padding: 80px 10%;
+    text-align: center;
+    background-color: #0d1117;
+}
+
+.Contact h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.retro-btn {
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: #e3b341;
+    border: 3px solid #e3b341;
+    padding: 15px 25px;
+    background: transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 6px 6px 0px #8a6d25;
+}
+
+.retro-btn:hover {
+    background-color: #e3b341;
+    color: #000;
+    box-shadow: none;
     transform: translateY(4px);
 }
+
+.retro-btn i {
+    font-size: 1.1rem;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 600px) {
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .retro-btn {
+        width: 80%;
+        justify-content: center;
+    }
+}
+
+
+/*v2
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+
+body {
+    background-color: #0d1117; 
+    color: #e6edf3;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    cursor: url('../data/cursor.png'), auto;
+    scroll-behavior: smooth;
+}
+
+.menu {
+    background-color: rgba(13, 17, 23, 0.95);
+    text-align: center;
+    padding: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #30363d;
+}
+
+.menu a {
+    color: #8b949e;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    margin: 0 1.2rem;
+    padding: 8px 12px;
+    transition: all 0.3s;
+}
+
+.menu a:hover {
+    color: #58a6ff;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.About_me {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.picture-profile {
+    width: 90%;
+    max-width: 1100px;
+    height: 380px;
+    margin: 20px auto;
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../data/8bits.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #30363d;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.picture-profile h1 {
+    position: absolute;
+    bottom: 50px;
+    right: 40px;
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
+    font-size: 2rem;
+    text-shadow: 3px 3px 0px #000;
+}
+
+.picture-profile img {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #58a6ff;
+    bottom: -40px;
+    left: 40px;
+    box-shadow: 0 0 25px rgba(88, 166, 255, 0.2);
+}
+
+.About_me p {
+    max-width: 900px;
+    margin: 60px auto 40px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #8b949e;
+    padding: 0 20px;
+}
+
+.Projects {
+    text-align: center;
+    padding: 80px 10%;
+}
+
+.Projects h1 {
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 50px;
+    text-shadow: 4px 4px 0px #58a6ff;
+}
+
+.Projects div[class^="p"] {
+    position: relative;
+    width: 100%; 
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    border: 2px solid #30363d;
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.75);
+    background-size: cover;
+    background-position: center;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.Projects div[class^="p"]:hover {
+    transform: scale(1.02);
+    border-color: #58a6ff;
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+}
+
+.Projects h2 {
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    z-index: 2;
+}
+
+.Projects p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: #8b949e;
+    z-index: 2;
+}
+
+.Projects button {
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    background-color: #58a6ff;
+    color: #0d1117;
+    padding: 12px 20px;
+    border: none;
+    margin-top: 15px;
+    border-bottom: 4px solid #1f6feb;
+    z-index: 2;
+}
+
+.Skills {
+    padding: 60px 10%;
+    text-align: center;
+}
+
+.Skills h1 {
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.skill-category {
+    background-color: #161b22;
+    border: 2px solid #30363d;
+    padding: 25px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.skill-category:hover {
+    border-color: #d29922;
+    transform: translateY(-5px);
+}
+
+.skill-category h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: #d29922;
+    margin-bottom: 15px;
+}
+
+.skill-category li {
+    font-family: 'Share Tech Mono', monospace;
+    color: #c9d1d9;
+    list-style: none;
+    padding: 5px 0;
+}
+
+.skill-category li::before {
+    content: "⚡ ";
+    color: #58a6ff;
+}
+
+.Contact {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.Contact h1 {
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.retro-btn {
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: #d29922;
+    border: 2px solid #d29922;
+    padding: 15px 20px;
+    margin: 10px;
+    display: inline-flex;
+    transition: 0.3s;
+}
+
+.retro-btn:hover {
+    background-color: #d29922;
+    color: #0d1117;
+    box-shadow: 0 0 15px rgba(210, 153, 34, 0.4);
+}
+
+.footer {
+    padding: 30px;
+    border-top: 1px solid #30363d;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    color: #484f58;
+}
+
+.p1 { background-image: url("../data/kava.jpg"); }
+.p2 { background-image: url("../data/project2.jpg"); }
+/* ... (p3, p4, p5, p6 igual) */
