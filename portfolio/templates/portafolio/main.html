@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'portafolio/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Kevin Yepes | Portfolio</title>
+</head>
+
+<body>
+
+    <div class="cointeiner">
+        <div class="menu">
+            <a href="#personal_info">About me</a>
+            <a href="#projects_id">Projects</a>
+            <a href="#skills_id">Skills</a>
+            <a href="#contact_id">Contact</a>
+        </div>
+
+        <div class="About_me" id="personal_info">
+            <div class="picture-profile">
+                <h1>Kevin Yepes</h1>
+                <h2>Software Development Analyst</h2>
+                <img src="{% static 'data/me.jfif' %}" alt="profile">
+            </div>
+            <p>Beyond my technical core, I am a firm believer in continuous evolution. I am always eager to dive into
+                new technologies, whether it's mastering advanced Cloud Computing architectures, exploring the latest in
+                AI-driven automation, or refining my DevOps practices to enhance CI/CD pipelines.
+
+                My approach is simple: I don't just write code; I build systems that solve real-world bottlenecks. I
+                thrive in environments that challenge my logic and require me to learn on the fly. I am currently
+                looking to expand my expertise in distributed systems and high-scale backend architectures, always
+                staying curious and ready to embrace the next big shift in the tech landscape.</p>
+        </div>
+
+        <div class="Projects" id="projects_id">
+    <h1>My Personal Projects</h1>
+    <p>Selected software engineering and automation projects:</p>
+    
+    <div class="p1">
+        <h2>UnadProject</h2>
+        <p>Final academic project focused on solving a real-world problem through structured analysis, system design, and full-stack implementation using JavaScript.</p>
+        <button>
+            <a href="https://github.com/KeviinYepes/unadproject" target="_blank">
+                View Project
+            </a>
+        </button>
+    </div>
+
+    <div class="p2">
+        <h2>PokeAPI - Flask Integration</h2>
+        <p>REST-based web application built with Flask consuming external APIs, managing environments, and structuring backend logic for scalable integration.</p>
+        <button>
+            <a href="https://github.com/KeviinYepes/PokeAPI-" target="_blank">
+                View Project
+            </a>
+        </button>
+    </div>
+
+    <div class="p3">
+        <h2>VulnerarCaptcha-2</h2>
+        <p>Advanced Python automation project focused on web interaction, CAPTCHA handling logic, and process optimization using Selenium-based workflows.</p>
+        <button>
+            <a href="https://github.com/KeviinYepes/VulnerarCaptcha-2" target="_blank">
+                View Project
+            </a>
+        </button>
+    </div>
+
+    <div class="p4">
+        <h2>LifeTrackAndroid</h2>
+        <p>Android application developed in Java implementing activity lifecycle management, UI components, and local data handling.</p>
+        <button>
+            <a href="https://github.com/KeviinYepes/LifeTrackAndroid" target="_blank">
+                View Project
+            </a>
+        </button>
+    </div>
+
+    <div class="p5">
+        <h2>Tkinter - File Renamer</h2>
+        <p>Desktop automation tool built with Python and Tkinter to batch-rename files efficiently, reducing manual workload.</p>
+        <button>
+            <a href="https://github.com/KeviinYepes/Tkinter_Renombrar_Archivos" target="_blank">
+                View Project
+            </a>
+        </button>
+    </div>
+    <div class="p6">
+        <h2>Kava - Restaurant System</h2>
+        <p>Python-based restaurant management system handling product logic, ordering workflows, and business rule implementation.</p>
+        <button>
+            <a href="https://github.com/KeviinYepes/Kava" target="_blank">
+                View Project
+            </a>
+        </button>
+    </div>
+</div>
+
+        <div class="Skills" id="skills_id">
+            <h1>Technical Skills</h1>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-code"></i> Backend</h3>
+                    <ul>
+                        <li>Python (Pandas, Flask)</li>
+                        <li>Zoho Deluge</li>
+                        <li>API Integration</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-robot"></i> Automation</h3>
+                    <ul>
+                        <li>Selenium</li>
+                        <li>Workflow Optimization</li>
+                        <li>Web Scraping</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-gears"></i> DevOps & Infra</h3>
+                    <ul>
+                        <li>Linux Admin</li>
+                        <li>Docker</li>
+                        <li>CI/CD Pipelines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="Contact" id="contact_id">
+            <h1>Connect Player</h1>
+            <div class="contact-buttons">
+                <a href="mailto:keyv2412@gmail.com" class="retro-btn">
+                    <i class="fa-solid fa-envelope"></i> [GMAIL]
+                </a>
+
+                <a href="https://www.linkedin.com/in/keviinyepes/?locale=en-US" target="_blank" class="retro-btn">
+                    <i class="fa-brands fa-linkedin"></i> [LINKEDIN]
+                </a>
+
+                <a href="https://github.com/KeviinYepes" target="_blank" class="retro-btn">
+                    <i class="fa-brands fa-github"></i> [GITHUB]
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p style="text-align: center;">Copyright © 2026 - KeviinYepes | All rights reserved</p>
+        </div>
+    </div>
+</body>
+
+</html>
