@@ -1,0 +1,673 @@
+/* =========================================================
+   IMPORTS
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;800&display=swap');
+
+
+/* =========================================================
+   1. VARIABLES
+   ========================================================= */
+:root {
+    /* === Gaming palette === */
+    --bg:        #0a0c10;
+    --bg2:       #0d1117;
+    --panel:     #161b22;
+    --border:    #30363d;
+    --text:      #e6edf3;
+    --muted:     #8b949e;
+    --blue:      #58a6ff;
+    --cyan:      #00f2ff;
+    --purple:    #ff00ff;
+    --yellow:    #e3b341;
+    --green:     #3fb950;
+
+    /* === Normal / Pro palette === */
+    --pro-bg:     #f8fafc;
+    --pro-bg2:    #ffffff;
+    --pro-panel:  #ffffff;
+    --pro-border: #e2e8f0;
+    --pro-text:   #0f172a;
+    --pro-muted:  #64748b;
+    --pro-blue:   #2563eb;
+    --pro-accent: #7c3aed;
+    --pro-green:  #059669;
+
+    /* === Shared tokens === */
+    --radius:     12px;
+    --transition: 0.3s ease;
+}
+
+
+/* =========================================================
+   2. RESET & BASE
+   ========================================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html  { scroll-behavior: smooth; }
+img   { max-width: 100%; display: block; }
+
+
+/* =========================================================
+   3. BODY — GAMING MODE
+   ========================================================= */
+body.gaming-mode {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Share Tech Mono', monospace;
+    cursor: default;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+
+/* =========================================================
+   4. BODY — NORMAL MODE
+   ========================================================= */
+body.normal-mode {
+    background-color: var(--pro-bg);
+    color: var(--pro-text);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+
+/* =========================================================
+   5. SCANLINES OVERLAY  (Gaming only)
+   ========================================================= */
+.scanlines {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.04) 2px,
+        rgba(0, 0, 0, 0.04) 4px
+    );
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+body.gaming-mode .scanlines { opacity: 1; }
+
+
+/* =========================================================
+   6. FLOATING PARTICLES  (Gaming only)
+   ========================================================= */
+.bg-particles {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+body.normal-mode .bg-particles { display: none; }
+
+.particle {
+    position: absolute;
+    bottom: -10px;
+    background: var(--cyan);
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: floatUp linear infinite;
+    box-shadow: 0 0 6px var(--cyan);
+}
+@keyframes floatUp {
+    0%   { transform: translateY(0) scale(1);       opacity: 0.15; }
+    100% { transform: translateY(-110vh) scale(0.3); opacity: 0; }
+}
+
+
+/* =========================================================
+   7. MAIN CONTAINER
+   ========================================================= */
+.cointeiner {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   8. NAVBAR
+   ========================================================= */
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s;
+}
+
+body.gaming-mode .menu         { background-color: rgba(10, 12, 16, 0.95); border-bottom: 2px solid var(--cyan); backdrop-filter: blur(8px); }
+body.gaming-mode .menu.scrolled { box-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
+body.normal-mode .menu          { background-color: rgba(255,255,255,0.95); border-bottom: 1px solid var(--pro-border); backdrop-filter: blur(10px); box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+
+/* Nav buttons */
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 0.6rem;
+    border: none;
+    transition: all 0.1s;
+}
+body.gaming-mode .nav-btn       { background-color: #21262d; border: 2px solid var(--border); color: var(--yellow); font-family: 'Press Start 2P', cursive; box-shadow: 4px 4px 0px #000; }
+body.gaming-mode .nav-btn i     { color: var(--cyan); font-size: 0.9rem; }
+body.gaming-mode .nav-btn:hover { background-color: #30363d; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--purple); color: #fff; }
+body.gaming-mode .nav-btn:active { transform: translate(2px, 2px); box-shadow: none; }
+body.normal-mode .nav-btn       { background: var(--pro-bg); border: 1.5px solid var(--pro-border); color: var(--pro-text); font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 8px; font-size: 0.75rem; }
+body.normal-mode .nav-btn:hover { background: var(--pro-blue); color: #fff; border-color: var(--pro-blue); }
+
+/* Nav center links */
+.nav-center { display: flex; gap: 4px; align-items: center; }
+
+.menu a { text-decoration: none; padding: 8px 14px; transition: all 0.2s; border-radius: 6px; }
+body.gaming-mode .menu a       { color: var(--muted); font-family: 'Press Start 2P', cursive; font-size: 0.58rem; border: 2px solid transparent; }
+body.gaming-mode .menu a:hover { background: #fff; color: #000; border-color: var(--purple); box-shadow: 3px 3px 0px var(--cyan); transform: translateY(-2px); }
+body.normal-mode .menu a       { color: var(--pro-muted); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; }
+body.normal-mode .menu a:hover { color: var(--pro-blue); background: rgba(37,99,235,0.07); }
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+.hamburger span { display: block; width: 24px; height: 2px; transition: all 0.3s; }
+body.gaming-mode .hamburger span { background: var(--cyan); }
+body.normal-mode .hamburger span  { background: var(--pro-text); }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* =========================================================
+   9. HERO — ABOUT ME
+   ========================================================= */
+.About_me {
+    padding: 40px 20px 60px;
+    text-align: center;
+}
+
+/* Banner */
+.picture-profile {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 360px;
+    margin: 0 auto 80px;
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius);
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 30px 30px 30px 310px;
+}
+body.gaming-mode .picture-profile {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('../portfolio/static/data/8bits.jpg');
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 30px rgba(0,242,255,0.15), inset 0 0 60px rgba(0,0,0,0.5);
+    animation: borderPulse 3s ease-in-out infinite;
+}
+@keyframes borderPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(0,242,255,0.15); }
+    50%       { box-shadow: 0 0 40px rgba(0,242,255,0.4), 0 0 80px rgba(255,0,255,0.1); }
+}
+body.normal-mode .picture-profile {
+    background-image: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #7c3aed 100%);
+    border: none;
+    box-shadow: 0 20px 60px rgba(37,99,235,0.2);
+}
+
+/* Glitch title */
+.glitch-title {
+    position: relative;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    color: #fff;
+    z-index: 2;
+    margin-bottom: 8px;
+}
+body.gaming-mode .glitch-title { font-family: 'Press Start 2P', cursive; text-shadow: 3px 3px 0px #000; animation: glitch 4s infinite; }
+body.gaming-mode .glitch-title::before,
+body.gaming-mode .glitch-title::after { content: attr(data-text); position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+body.gaming-mode .glitch-title::before { color: var(--cyan);   animation: glitchTop 4s infinite; clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); transform: translate(-2px, -2px); }
+body.gaming-mode .glitch-title::after  { color: var(--purple); animation: glitchBot 4s infinite; clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); transform: translate(2px, 2px); }
+@keyframes glitch    { 0%, 90%, 100% { transform: none; }           92% { transform: skewX(-1deg); } 94% { transform: skewX(1deg); } }
+@keyframes glitchTop { 0%, 90%, 100% { transform: translate(-2px,-2px); } 92% { transform: translate(-4px, 0); } 94% { transform: translate(2px,-4px); } }
+@keyframes glitchBot { 0%, 90%, 100% { transform: translate(2px, 2px); }  92% { transform: translate(4px, 0); }  94% { transform: translate(-2px,4px); } }
+body.normal-mode .glitch-title { font-family: 'Syne', sans-serif; font-weight: 800; letter-spacing: -1px; }
+
+/* Subtitle */
+.subtitle { font-size: clamp(0.6rem, 1.5vw, 0.85rem); z-index: 2; margin-bottom: 20px; }
+body.gaming-mode .subtitle { font-family: 'Press Start 2P', cursive; color: var(--cyan); }
+body.normal-mode .subtitle  { font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.85); font-weight: 400; font-size: 1rem; }
+
+/* Profile photo */
+.profile-img {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    bottom: -40px;
+    left: 40px;
+    z-index: 3;
+}
+body.gaming-mode .profile-img { border: 4px solid var(--cyan); box-shadow: 0 0 30px rgba(0,242,255,0.3); animation: profileGlow 3s ease-in-out infinite; }
+@keyframes profileGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(0,242,255,0.3); }
+    50%       { box-shadow: 0 0 50px rgba(0,242,255,0.6), 0 0 80px rgba(255,0,255,0.2); }
+}
+body.normal-mode .profile-img { border: 5px solid #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.25); }
+
+/* KOF Fight scene */
+.fight-scene { position: absolute; bottom: 10px; right: 10px; display: flex; align-items: flex-end; gap: 10px; z-index: 2; }
+body.normal-mode .fight-scene { display: none !important; }
+
+.fight-gif-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.kof-gif { width: clamp(180px, 30vw, 340px); height: auto; border-radius: 6px; image-rendering: pixelated; animation: kofGlow 2s ease-in-out infinite; }
+@keyframes kofGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(0,242,255,0.3)); }
+    50%       { filter: drop-shadow(0 0 20px rgba(255,0,255,0.6)); }
+}
+
+.fight-label { display: flex; align-items: center; gap: 10px; }
+.fight-tag   { font-family: 'Press Start 2P', cursive; font-size: 0.45rem; color: var(--yellow); background: rgba(0,0,0,0.6); padding: 4px 8px; border: 1px solid var(--yellow); }
+.fight-names { font-family: 'Press Start 2P', cursive; font-size: 0.55rem; color: #fff; text-shadow: 2px 2px 0 #000; }
+.vs-inline   { color: var(--purple); animation: vsPulse 1s ease-in-out infinite; }
+@keyframes vsPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); color: var(--purple); } }
+
+/* Stat bars */
+.hero-stats { position: absolute; top: 20px; right: 20px; width: 180px; z-index: 2; }
+body.normal-mode .hero-stats { display: none; }
+
+.stat-bar-wrap { margin-bottom: 8px; }
+.stat-label    { font-family: 'Press Start 2P', cursive; font-size: 0.45rem; color: var(--cyan); display: block; margin-bottom: 3px; }
+.stat-bar      { height: 8px; background: rgba(255,255,255,0.1); border: 1px solid var(--border); }
+.stat-fill     { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--blue)); animation: fillBar 1.5s ease forwards 0.5s; box-shadow: 0 0 8px var(--cyan); }
+@keyframes fillBar { to { width: var(--w); } }
+
+/* Pro badges */
+.pro-badges { display: none; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 50px auto 20px; }
+body.normal-mode .pro-badges { display: flex; }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #fff; border: 1.5px solid var(--pro-border); border-radius: 999px; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--pro-blue); box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: all 0.2s; }
+.badge:hover { background: var(--pro-blue); color: #fff; transform: translateY(-2px); }
+
+/* About text */
+.about-text {
+    max-width: 860px;
+    margin: 60px auto 40px;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    line-height: 1.8;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.about-text.visible { opacity: 1; transform: none; }
+body.gaming-mode .about-text { font-family: 'Share Tech Mono', monospace; color: var(--muted); }
+body.normal-mode .about-text  { font-family: 'Inter', sans-serif; color: var(--pro-muted); font-size: 1.05rem; }
+
+/* Numeric stats */
+.num-stats {
+    display: flex;
+    justify-content: center;
+    gap: clamp(30px, 6vw, 80px);
+    padding: 30px 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+.num-stats.visible { opacity: 1; transform: none; }
+
+.num-stat { text-align: center; }
+.num      { display: block; font-weight: 800; line-height: 1; }
+body.gaming-mode .num { font-family: 'Press Start 2P', cursive; color: var(--cyan); font-size: clamp(1.2rem, 3vw, 2rem); }
+body.normal-mode .num  { font-family: 'Syne', sans-serif; color: var(--pro-blue); font-size: clamp(2rem, 5vw, 3.5rem); }
+
+.num-label { display: block; margin-top: 6px; }
+body.gaming-mode .num-label { font-family: 'Press Start 2P', cursive; color: var(--muted); font-size: 0.45rem; }
+body.normal-mode .num-label  { font-family: 'Inter', sans-serif; color: var(--pro-muted); font-size: 0.75rem; }
+
+
+/* =========================================================
+   10. SECTION TITLES
+   ========================================================= */
+.section-title { font-size: clamp(1rem, 3vw, 1.8rem); margin-bottom: 12px; text-align: center; }
+body.gaming-mode .section-title { font-family: 'Press Start 2P', cursive; color: #fff; text-shadow: 4px 4px 0px var(--blue); }
+body.normal-mode .section-title  { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--pro-text); }
+
+.section-sub { text-align: center; margin-bottom: 50px; font-size: 0.95rem; }
+body.gaming-mode .section-sub { font-family: 'Share Tech Mono', monospace; color: var(--muted); }
+body.normal-mode .section-sub  { font-family: 'Inter', sans-serif; color: var(--pro-muted); }
+
+
+/* =========================================================
+   11. PROJECTS
+   ========================================================= */
+.Projects { padding: 80px 5%; text-align: center; }
+
+/* Filter bar */
+.filter-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 40px; }
+
+.filter-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; cursor: pointer; font-size: 0.75rem; border-radius: 6px; transition: all 0.2s; }
+body.gaming-mode .filter-btn          { font-family: 'Press Start 2P', cursive; font-size: 0.5rem; background: var(--panel); border: 2px solid var(--border); color: var(--muted); }
+body.gaming-mode .filter-btn:hover,
+body.gaming-mode .filter-btn.active   { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 12px rgba(0,242,255,0.3); background: rgba(0,242,255,0.07); }
+body.normal-mode .filter-btn          { font-family: 'Inter', sans-serif; font-weight: 600; background: #fff; border: 1.5px solid var(--pro-border); color: var(--pro-muted); }
+body.normal-mode .filter-btn:hover,
+body.normal-mode .filter-btn.active   { background: var(--pro-blue); border-color: var(--pro-blue); color: #fff; }
+
+/* Grid */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+
+/* Card */
+.project-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
+}
+.project-card.visible { opacity: 1; transform: translateY(0); }
+.project-card.hidden  { display: none; }
+
+.project-card:nth-child(1) { transition-delay: 0.0s; }
+.project-card:nth-child(2) { transition-delay: 0.1s; }
+.project-card:nth-child(3) { transition-delay: 0.2s; }
+.project-card:nth-child(4) { transition-delay: 0.3s; }
+.project-card:nth-child(5) { transition-delay: 0.4s; }
+.project-card:nth-child(6) { transition-delay: 0.5s; }
+
+body.gaming-mode .project-card       { border: 2px solid var(--border); background: var(--panel); }
+body.gaming-mode .project-card:hover { border-color: var(--cyan); box-shadow: 0 0 25px rgba(0,242,255,0.2); transform: scale(1.03) translateY(0) !important; }
+body.normal-mode .project-card       { border: 1px solid var(--pro-border); background: var(--pro-panel); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+body.normal-mode .project-card:hover { box-shadow: 0 12px 40px rgba(37,99,235,0.12); transform: translateY(-4px) !important; border-color: var(--pro-blue); }
+
+/* Card inner elements */
+.card-inner { padding: 28px 24px; text-align: left; height: 100%; display: flex; flex-direction: column; gap: 12px; }
+
+.card-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.5px; }
+body.gaming-mode .card-tag { font-family: 'Press Start 2P', cursive; color: var(--cyan); font-size: 0.45rem; }
+body.normal-mode .card-tag  { font-family: 'Inter', sans-serif; color: var(--pro-accent); background: rgba(124,58,237,0.08); padding: 3px 10px; border-radius: 999px; display: inline-block; }
+
+.project-card h2 { margin: 0; }
+body.gaming-mode .project-card h2 { font-family: 'Press Start 2P', cursive; color: #fff; font-size: clamp(0.7rem, 1.5vw, 1rem); text-shadow: 2px 2px 0px #000; }
+body.normal-mode .project-card h2  { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--pro-text); font-size: clamp(0.9rem, 2vw, 1.3rem); }
+
+.project-card p { font-size: 0.9rem; line-height: 1.6; flex: 1; }
+body.gaming-mode .project-card p { font-family: 'Share Tech Mono', monospace; color: var(--muted); }
+body.normal-mode .project-card p  { font-family: 'Inter', sans-serif; color: var(--pro-muted); }
+
+.card-org { display: inline-flex; align-items: center; gap: 5px; font-size: 0.7rem; margin-top: 4px; }
+body.gaming-mode .card-org { font-family: 'Share Tech Mono', monospace; color: var(--yellow); opacity: 0.7; }
+body.normal-mode .card-org  { font-family: 'Inter', sans-serif; color: var(--pro-muted); font-size: 0.75rem; }
+
+.card-btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 0.75rem; font-weight: 600; margin-top: auto; align-self: flex-start; transition: all 0.2s; }
+body.gaming-mode .card-btn       { font-family: 'Press Start 2P', cursive; font-size: 0.5rem; color: #0d1117; background: var(--blue); padding: 10px 16px; border-bottom: 4px solid #1f6feb; }
+body.gaming-mode .card-btn:hover { background: var(--cyan); transform: translateY(-2px); }
+body.normal-mode .card-btn       { font-family: 'Inter', sans-serif; color: var(--pro-blue); padding: 8px 0; border-bottom: 2px solid var(--pro-blue); }
+body.normal-mode .card-btn:hover { gap: 14px; }
+
+
+/* =========================================================
+   12. SKILLS
+   ========================================================= */
+.Skills { padding: 80px 5%; text-align: center; }
+
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 40px; }
+
+.skill-category {
+    padding: 28px 24px;
+    text-align: left;
+    border-radius: var(--radius);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
+}
+.skill-category.visible      { opacity: 1; transform: translateY(0); }
+.skill-category:nth-child(1) { transition-delay: 0.0s; }
+.skill-category:nth-child(2) { transition-delay: 0.1s; }
+.skill-category:nth-child(3) { transition-delay: 0.2s; }
+.skill-category:nth-child(4) { transition-delay: 0.3s; }
+
+body.gaming-mode .skill-category       { background: var(--panel); border: 3px solid var(--border); box-shadow: 8px 8px 0px #000; }
+body.gaming-mode .skill-category:hover { border-color: var(--yellow); transform: translate(-4px,-4px) !important; box-shadow: 12px 12px 0px #8a6d25; }
+body.normal-mode .skill-category       { background: #fff; border: 1px solid var(--pro-border); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+body.normal-mode .skill-category:hover { box-shadow: 0 8px 30px rgba(37,99,235,0.1); border-color: var(--pro-blue); transform: translateY(-4px) !important; }
+
+.skill-category h3 { margin-bottom: 16px; }
+body.gaming-mode .skill-category h3 { font-family: 'Press Start 2P', cursive; font-size: 0.7rem; color: var(--yellow); }
+body.normal-mode .skill-category h3  { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--pro-blue); font-size: 1rem; }
+
+.skill-category ul { list-style: none; }
+.skill-category li { padding: 6px 0; font-size: 0.9rem; border-bottom-style: dashed; border-bottom-width: 1px; }
+body.gaming-mode .skill-category li         { font-family: 'Share Tech Mono', monospace; color: #c9d1d9; border-bottom-color: var(--border); }
+body.gaming-mode .skill-category li::before { content: "⚡ "; color: var(--blue); }
+body.normal-mode .skill-category li         { font-family: 'Inter', sans-serif; color: var(--pro-muted); border-bottom-color: var(--pro-border); }
+body.normal-mode .skill-category li::before { content: "→ "; color: var(--pro-blue); }
+
+
+/* =========================================================
+   13. CONTACT
+   ========================================================= */
+.Contact { padding: 80px 5%; text-align: center; }
+
+.contact-inner { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: flex-start; margin-top: 50px; }
+
+/* Form */
+.send_form { flex: 1; min-width: 280px; max-width: 520px; padding: 30px; border-radius: var(--radius); }
+body.gaming-mode .send_form { background: var(--panel); border: 3px solid var(--border); box-shadow: 10px 10px 0px #000, 10px 10px 0px 2px var(--blue); }
+body.normal-mode .send_form  { background: #fff; border: 1px solid var(--pro-border); box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+
+.send_form h2 { margin-bottom: 20px; }
+body.gaming-mode .send_form h2 { font-family: 'Press Start 2P', cursive; color: var(--cyan); font-size: 0.75rem; }
+body.normal-mode .send_form h2  { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--pro-text); font-size: 1.3rem; }
+
+.send_form form { display: flex; flex-direction: column; gap: 14px; }
+
+.send_form input,
+.send_form textarea { width: 100%; padding: 12px; border-radius: 6px; outline: none; font-size: 0.9rem; transition: border-color 0.2s, box-shadow 0.2s; }
+
+body.gaming-mode .send_form input,
+body.gaming-mode .send_form textarea { background: var(--bg); border: 2px solid var(--border); color: var(--text); font-family: 'Share Tech Mono', monospace; }
+body.gaming-mode .send_form input:focus,
+body.gaming-mode .send_form textarea:focus { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,242,255,0.2); }
+
+body.normal-mode .send_form input,
+body.normal-mode .send_form textarea { background: var(--pro-bg); border: 1.5px solid var(--pro-border); color: var(--pro-text); font-family: 'Inter', sans-serif; }
+body.normal-mode .send_form input:focus,
+body.normal-mode .send_form textarea:focus { border-color: var(--pro-blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+
+.send_form textarea { min-height: 120px; resize: vertical; }
+
+.send_form button[type="submit"] { padding: 14px; cursor: pointer; font-weight: 700; border: none; border-radius: 6px; transition: all 0.2s; }
+body.gaming-mode .send_form button[type="submit"]        { font-family: 'Press Start 2P', cursive; font-size: 0.65rem; background: var(--green); color: #fff; border-bottom: 5px solid #1a632a; }
+body.gaming-mode .send_form button[type="submit"]:active { transform: translateY(4px); border-bottom-width: 0; }
+body.normal-mode .send_form button[type="submit"]        { font-family: 'Inter', sans-serif; font-size: 0.9rem; background: var(--pro-blue); color: #fff; }
+body.normal-mode .send_form button[type="submit"]:hover  { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
+
+/* Social links */
+.contact-links { display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 10px; }
+.contact-links p { font-size: 0.85rem; margin-bottom: 4px; }
+body.gaming-mode .contact-links p { font-family: 'Share Tech Mono', monospace; color: var(--muted); }
+body.normal-mode .contact-links p  { font-family: 'Inter', sans-serif; color: var(--pro-muted); }
+
+.retro-btn { text-decoration: none; display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; min-width: 200px; justify-content: center; font-weight: 600; transition: all 0.2s; }
+body.gaming-mode .retro-btn       { font-family: 'Press Start 2P', cursive; font-size: 0.65rem; color: var(--yellow); border: 3px solid var(--yellow); box-shadow: 6px 6px 0px #8a6d25; background: transparent; }
+body.gaming-mode .retro-btn:hover { background: var(--yellow); color: #000; transform: translate(-2px,-2px); box-shadow: 8px 8px 0px #fff; }
+body.normal-mode .retro-btn       { font-family: 'Inter', sans-serif; font-size: 0.85rem; border-radius: 8px; border: 1.5px solid var(--pro-border); color: var(--pro-text); background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+body.normal-mode .retro-btn:hover { background: var(--pro-blue); color: #fff; border-color: var(--pro-blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.2); }
+
+
+/* =========================================================
+   14. FOOTER
+   ========================================================= */
+.footer { padding: 30px 20px; text-align: center; font-size: 0.8rem; }
+body.gaming-mode .footer { border-top: 1px solid var(--border); font-family: 'Share Tech Mono', monospace; color: #484f58; }
+body.normal-mode .footer  { border-top: 1px solid var(--pro-border); font-family: 'Inter', sans-serif; color: var(--pro-muted); }
+
+
+/* =========================================================
+   15. RESPONSIVE — TABLET  (≤ 900px)
+   ========================================================= */
+@media (max-width: 900px) {
+    .picture-profile   { flex-direction: column; align-items: center; text-align: center; padding: 20px; min-height: 280px; }
+    .profile-img       { position: relative; bottom: auto; left: auto; margin: 0 auto 20px; width: 160px; height: 160px; }
+    .glitch-title      { font-size: 1.2rem; }
+    .hero-stats        { position: static; width: 100%; margin-top: 16px; }
+    .fight-scene       { position: static; margin-top: 16px; justify-content: center; }
+    .projects-grid     { grid-template-columns: 1fr 1fr; }
+    .skills-grid       { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* =========================================================
+   16. RESPONSIVE — MOBILE  (≤ 600px)
+   ========================================================= */
+@media (max-width: 600px) {
+    /* Navbar */
+    .menu      { padding: 0.8rem 1rem; }
+    .hamburger { display: flex; }
+    .nav-center {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 999;
+    }
+    body.gaming-mode .nav-center { background: rgba(10,12,16,0.98); border-bottom: 2px solid var(--cyan); }
+    body.normal-mode .nav-center  { background: #fff; border-bottom: 1px solid var(--pro-border); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .nav-center.open   { display: flex; }
+    .menu a            { padding: 14px 20px; width: 100%; text-align: left; border-radius: 0; }
+    .nav-btn span      { display: none; }
+
+    /* Sections */
+    .About_me,
+    .Projects,
+    .Skills,
+    .Contact           { padding: 50px 16px; }
+    .picture-profile   { padding: 16px; min-height: auto; }
+    .glitch-title      { font-size: 1rem !important; }
+    .subtitle          { font-size: 0.6rem !important; }
+    .profile-img       { width: 120px; height: 120px; }
+    .kof-gif           { width: 180px; }
+    .hero-stats        { width: 100%; }
+    .section-title     { font-size: clamp(0.8rem, 4vw, 1.3rem); }
+
+    /* Grids */
+    .projects-grid     { grid-template-columns: 1fr; }
+    .skills-grid       { grid-template-columns: 1fr; }
+    .filter-bar        { gap: 6px; }
+    .filter-btn        { padding: 8px 12px; }
+
+    /* Stats & contact */
+    .num-stats         { gap: 24px; flex-wrap: wrap; }
+    .contact-inner     { flex-direction: column; }
+    .send_form         { max-width: 100%; }
+}
+
+
+/* =========================================================
+   17. CONTACT — KOF GIF BACKGROUND
+   ========================================================= */
+
+/* Wrapper que contiene el GIF de fondo + formulario encima */
+.contact-gif-bg {
+    flex: 1;
+    min-width: 280px;
+    max-width: 520px;
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+/* GIF de fondo: cubre todo el wrapper */
+.contact-kof-gif {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    image-rendering: pixelated;
+    display: block;
+}
+
+/* Overlay para hacer legible el formulario encima del GIF */
+.contact-gif-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Gaming: overlay oscuro con tinte cyan/purple */
+body.gaming-mode .contact-gif-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(10, 12, 16, 0.80) 0%,
+        rgba(0, 20, 40, 0.75) 50%,
+        rgba(50, 0, 60, 0.70) 100%
+    );
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 30px rgba(0,242,255,0.2), inset 0 0 40px rgba(0,0,0,0.4);
+    animation: contactBorderPulse 3s ease-in-out infinite;
+}
+@keyframes contactBorderPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(0,242,255,0.2), inset 0 0 40px rgba(0,0,0,0.4); }
+    50%       { box-shadow: 0 0 40px rgba(255,0,255,0.3), inset 0 0 60px rgba(0,0,0,0.5); }
+}
+
+/* Normal mode: el GIF se oculta, queda solo el formulario limpio */
+body.normal-mode .contact-kof-gif    { display: none; }
+body.normal-mode .contact-gif-overlay { display: none; }
+body.normal-mode .contact-gif-bg {
+    background: #fff;
+    border: 1px solid var(--pro-border);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+}
+
+/* El formulario va por encima del GIF y del overlay */
+.contact-gif-bg .send_form {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* En gaming mode, ajustamos inputs para que contrasten sobre el GIF */
+body.gaming-mode .contact-gif-bg .send_form input,
+body.gaming-mode .contact-gif-bg .send_form textarea {
+    background: rgba(10, 12, 16, 0.75);
+    border-color: rgba(0,242,255,0.4);
+    backdrop-filter: blur(4px);
+}
+body.gaming-mode .contact-gif-bg .send_form input:focus,
+body.gaming-mode .contact-gif-bg .send_form textarea:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 14px rgba(0,242,255,0.3);
+}
+
+/* Mobile: el GIF de fondo ocupa la altura mínima del formulario */
+@media (max-width: 600px) {
+    .contact-gif-bg  { max-width: 100%; }
+    .contact-kof-gif { opacity: 0.85; }
+}
