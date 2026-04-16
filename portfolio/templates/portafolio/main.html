@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,160 +8,419 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Kevin Yepes | Portfolio</title>
 </head>
-
-<body>
+<body class="gaming-mode">
+    <div class="bg-particles" id="bgParticles"></div>
+    <div class="scanlines"></div>
 
     <div class="cointeiner">
-        <div class="menu">
-            <a href="#personal_info">About me</a>
-            <a href="#projects_id">Projects</a>
-            <a href="#skills_id">Skills</a>
-            <a href="#contact_id">Contact</a>
-        </div>
+        <nav class="menu" id="mainNav">
+            <div class="nav-left">
+                <button id="theme-toggle" class="nav-btn" type="button">
+                    <i class="fa-solid fa-gamepad" id="theme-icon"></i>
+                    <span class="lang-text" data-en="GAMING MODE" data-es="MODO GAMING">MODO GAMING</span>
+                </button>
+            </div>
 
-        <div class="About_me" id="personal_info">
+            <button class="hamburger" id="hamburger" aria-label="Menu" type="button">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-center" id="navCenter">
+                <a href="#personal_info" class="nav-link lang-text" data-en="About me" data-es="Sobre mi">Sobre mi</a>
+                <a href="#projects_id" class="nav-link lang-text" data-en="Projects" data-es="Proyectos">Proyectos</a>
+                <a href="#skills_id" class="nav-link lang-text" data-en="Skills" data-es="Habilidades">Habilidades</a>
+                <a href="#contact_id" class="nav-link lang-text" data-en="Contact" data-es="Contacto">Contacto</a>
+            </div>
+
+            <div class="nav-right">
+                <button id="lang-toggle" class="nav-btn" type="button">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="current-lang-label">EN</span>
+                </button>
+            </div>
+        </nav>
+
+        <section class="About_me" id="personal_info">
             <div class="picture-profile">
-                <h1>Kevin Yepes</h1>
-                <h2>Software Development Analyst</h2>
-                <img src="{% static 'data/me.jfif' %}" alt="profile">chat
-            </div>
-            <p>Beyond my technical core, I am a firm believer in continuous evolution. I am always eager to dive into
-                new technologies, whether it's mastering advanced Cloud Computing architectures, exploring the latest in
-                AI-driven automation, or refining my DevOps practices to enhance CI/CD pipelines.
+                <h1 class="glitch-title" data-text="Kevin Yepes">Kevin Yepes</h1>
+                <h2 class="subtitle lang-text" data-en="Software Development Analyst" data-es="Analista de Desarrollo de Software">Analista de Desarrollo de Software</h2>
+                <img src="{% static 'data/me.jfif' %}" alt="profile" class="profile-img">
 
-                My approach is simple: I don't just write code; I build systems that solve real-world bottlenecks. I
-                thrive in environments that challenge my logic and require me to learn on the fly. I am currently
-                looking to expand my expertise in distributed systems and high-scale backend architectures, always
-                staying curious and ready to embrace the next big shift in the tech landscape.</p>
-        </div>
-
-        <div class="Projects" id="projects_id">
-            <h1>My Personal Projects</h1>
-            <p>Selected software engineering and automation projects:</p>
-
-            <div class="p1">
-                <h2>UnadProject</h2>
-                <p>Final academic project focused on solving a real-world problem through structured analysis, system
-                    design, and full-stack implementation using JavaScript.</p>
-                <button>
-                    <a href="https://github.com/KeviinYepes/unadproject" target="_blank">
-                        View Project
-                    </a>
-                </button>
+                <div class="hero-stats" id="heroStats">
+                    <div class="stat-bar-wrap">
+                        <span class="stat-label">Python</span>
+                        <div class="stat-bar"><div class="stat-fill" style="--w:90%"></div></div>
+                    </div>
+                    <div class="stat-bar-wrap">
+                        <span class="stat-label">DevOps</span>
+                        <div class="stat-bar"><div class="stat-fill" style="--w:78%"></div></div>
+                    </div>
+                    <div class="stat-bar-wrap">
+                        <span class="stat-label">Selenium</span>
+                        <div class="stat-bar"><div class="stat-fill" style="--w:85%"></div></div>
+                    </div>
+                    <div class="stat-bar-wrap">
+                        <span class="stat-label">Flask</span>
+                        <div class="stat-bar"><div class="stat-fill" style="--w:80%"></div></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="p2">
-                <h2>PokeAPI - Flask Integration</h2>
-                <p>REST-based web application built with Flask consuming external APIs, managing environments, and
-                    structuring backend logic for scalable integration.</p>
-                <button>
-                    <a href="https://github.com/KeviinYepes/PokeAPI-" target="_blank">
-                        View Project
-                    </a>
-                </button>
+            <div class="pro-badges" id="proBadges">
+                <span class="badge"><i class="fa-solid fa-code"></i> Full Stack</span>
+                <span class="badge"><i class="fa-solid fa-robot"></i> Automation</span>
+                <span class="badge"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="badge"><i class="fa-solid fa-cloud"></i> DevOps</span>
+                <span class="badge"><i class="fa-solid fa-database"></i> Backend</span>
             </div>
 
-            <div class="p3">
-                <h2>VulnerarCaptcha-2</h2>
-                <p>Advanced Python automation project focused on web interaction, CAPTCHA handling logic, and process
-                    optimization using Selenium-based workflows.</p>
-                <button>
-                    <a href="https://github.com/KeviinYepes/VulnerarCaptcha-2" target="_blank">
-                        View Project
-                    </a>
-                </button>
+            <p class="about-text lang-text"
+               data-en="Beyond my technical core, I am a firm believer in continuous evolution. I am always eager to dive into new technologies, whether it is mastering advanced Cloud Computing architectures, exploring the latest in AI-driven automation, or refining my DevOps practices to enhance CI/CD pipelines. My approach is simple: I do not just write code; I build systems that solve real-world bottlenecks."
+               data-es="Mas alla de mi nucleo tecnico, soy un firme creyente en la evolucion continua. Siempre estoy ansioso por sumergirme en nuevas tecnologias, ya sea dominando arquitecturas avanzadas de Cloud Computing, explorando lo ultimo en automatizacion impulsada por IA o refinando mis practicas de DevOps. Mi enfoque es simple: no solo escribo codigo; construyo sistemas que resuelven cuellos de botella reales.">
+               Mas alla de mi nucleo tecnico, soy un firme creyente en la evolucion continua. Siempre estoy ansioso por sumergirme en nuevas tecnologias, ya sea dominando arquitecturas avanzadas de Cloud Computing, explorando lo ultimo en automatizacion impulsada por IA o refinando mis practicas de DevOps. Mi enfoque es simple: no solo escribo codigo; construyo sistemas que resuelven cuellos de botella reales.
+            </p>
+
+            <div class="num-stats">
+                <div class="num-stat">
+                    <span class="num" data-target="29">0</span>
+                    <span class="num-label lang-text" data-en="Projects" data-es="Proyectos">Proyectos</span>
+                </div>
+                <div class="num-stat">
+                    <span class="num" data-target="3">0</span>
+                    <span class="num-label lang-text" data-en="Languages" data-es="Lenguajes">Lenguajes</span>
+                </div>
+                <div class="num-stat">
+                    <span class="num" data-target="100">0</span>
+                    <span class="num-label">% <span class="lang-text" data-en="Committed" data-es="Comprometido">Comprometido</span></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="Projects" id="projects_id">
+            <h1 class="section-title lang-text" data-en="My Projects" data-es="Mis Proyectos">Mis Proyectos</h1>
+            <p class="section-sub lang-text" data-en="Personal and professional: automation, scraping, full-stack and more." data-es="Personales y profesionales: automatizacion, scraping, full-stack y mas.">Personales y profesionales: automatizacion, scraping, full-stack y mas.</p>
+
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all" type="button"><span class="lang-text" data-en="All" data-es="Todos">Todos</span></button>
+                <button class="filter-btn" data-filter="automation" type="button"><i class="fa-solid fa-robot"></i> <span class="lang-text" data-en="Automation" data-es="Automatizacion">Automatizacion</span></button>
+                <button class="filter-btn" data-filter="scraping" type="button"><i class="fa-solid fa-spider"></i> Web Scraping</button>
+                <button class="filter-btn" data-filter="fullstack" type="button"><i class="fa-solid fa-layer-group"></i> Full Stack</button>
+                <button class="filter-btn" data-filter="tools" type="button"><i class="fa-solid fa-wrench"></i> <span class="lang-text" data-en="Tools" data-es="Herramientas">Herramientas</span></button>
             </div>
 
-            <div class="p4">
-                <h2>LifeTrackAndroid</h2>
-                <p>Android application developed in Java implementing activity lifecycle management, UI components, and
-                    local data handling.</p>
-                <button>
-                    <a href="https://github.com/KeviinYepes/LifeTrackAndroid" target="_blank">
-                        View Project
-                    </a>
-                </button>
-            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="automation">
+                    <div class="card-inner">
+                        <div class="card-tag">Python · RPA · Egresos</div>
+                        <h2>RPA Egresos</h2>
+                        <p class="lang-text" data-en="RPA automating expense data entry and report generation, eliminating repetitive manual tasks." data-es="RPA que automatiza el ingreso de datos de egresos y generacion de reportes, eliminando tareas manuales repetitivas.">RPA que automatiza el ingreso de datos de egresos y generacion de reportes, eliminando tareas manuales repetitivas.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/RpaEgresos" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-            <div class="p5">
-                <h2>Tkinter - File Renamer</h2>
-                <p>Desktop automation tool built with Python and Tkinter to batch-rename files efficiently, reducing
-                    manual workload.</p>
-                <button>
-                    <a href="https://github.com/KeviinYepes/Tkinter_Renombrar_Archivos" target="_blank">
-                        View Project
-                    </a>
-                </button>
-            </div>
-            <div class="p6">
-                <h2>Kava - Restaurant System</h2>
-                <p>Python-based restaurant management system handling product logic, ordering workflows, and business
-                    rule implementation.</p>
-                <button>
-                    <a href="https://github.com/KeviinYepes/Kava" target="_blank">
-                        View Project
-                    </a>
-                </button>
-            </div>
-        </div>
+                <div class="project-card" data-category="automation">
+                    <div class="card-inner">
+                        <div class="card-tag">Python · Selenium · CAPTCHA</div>
+                        <h2>VulnerarCaptcha-2</h2>
+                        <p class="lang-text" data-en="Advanced automation with CAPTCHA bypass logic and complex Selenium-based challenge handling." data-es="Automatizacion avanzada con logica de bypass de CAPTCHA y manejo de desafios complejos con Selenium.">Automatizacion avanzada con logica de bypass de CAPTCHA y manejo de desafios complejos con Selenium.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/VulnerarCaptcha-2" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-        <div class="Skills" id="skills_id">
-            <h1>Technical Skills</h1>
+                <div class="project-card" data-category="automation">
+                    <div class="card-inner">
+                        <div class="card-tag">Python · Selenium · Consultas</div>
+                        <h2>SIRAS Consultar No Radicado</h2>
+                        <p class="lang-text" data-en="Automation for querying unregistered SIRAS cases, streamlining administrative verification." data-es="Automatizacion para consultar casos no radicados en SIRAS, agilizando la verificacion administrativa.">Automatizacion para consultar casos no radicados en SIRAS, agilizando la verificacion administrativa.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/SirasConsultarNoRadicado" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="fullstack">
+                    <div class="card-inner">
+                        <div class="card-tag">Python · Flask · REST API</div>
+                        <h2>PokeAPI - Flask Integration</h2>
+                        <p class="lang-text" data-en="REST web app with Flask consuming external APIs, managing environments and backend logic." data-es="App web REST con Flask consumiendo APIs externas, gestionando entornos y logica de backend.">App web REST con Flask consumiendo APIs externas, gestionando entornos y logica de backend.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/PokeAPI-" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="fullstack">
+                    <div class="card-inner">
+                        <div class="card-tag">JavaScript · Full Stack · UNAD</div>
+                        <h2>UnadProject</h2>
+                        <p class="lang-text" data-en="Academic final project solving a real problem with structured analysis and full-stack JS." data-es="Proyecto academico final resolviendo un problema real con analisis estructurado y JS full-stack.">Proyecto academico final resolviendo un problema real con analisis estructurado y JS full-stack.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/unadproject" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="fullstack">
+                    <div class="card-inner">
+                        <div class="card-tag">Java · Android</div>
+                        <h2>LifeTrackAndroid</h2>
+                        <p class="lang-text" data-en="Android app in Java with lifecycle management, UI components and local data handling." data-es="App Android en Java con gestion de ciclo de vida, componentes UI y manejo de datos locales.">App Android en Java con gestion de ciclo de vida, componentes UI y manejo de datos locales.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/LifeTrackAndroid" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="fullstack">
+                    <div class="card-inner">
+                        <div class="card-tag">Python · Restaurante · CLI</div>
+                        <h2>Kava - Restaurant System</h2>
+                        <p class="lang-text" data-en="Restaurant management system handling product logic, ordering flows and business rules." data-es="Sistema de gestion de restaurantes con logica de productos, flujos de pedidos y reglas de negocio.">Sistema de gestion de restaurantes con logica de productos, flujos de pedidos y reglas de negocio.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/Kava" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="tools">
+                    <div class="card-inner">
+                        <div class="card-tag">Python · Tkinter · Desktop</div>
+                        <h2>Tkinter - File Renamer</h2>
+                        <p class="lang-text" data-en="Desktop GUI for batch file renaming, reducing repetitive manual workload significantly." data-es="GUI de escritorio para renombrar archivos por lotes, reduciendo significativamente la carga de trabajo manual.">GUI de escritorio para renombrar archivos por lotes, reduciendo significativamente la carga de trabajo manual.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/Tkinter_Renombrar_Archivos" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="tools scraping">
+                    <div class="card-inner">
+                        <div class="card-tag">Python · Scraping · v1</div>
+                        <h2>WebScraping V1</h2>
+                        <p class="lang-text" data-en="First personal scraping framework version, laying the foundation for all later automation projects." data-es="Primera version del framework personal de scraping, sentando las bases de los proyectos de automatizacion posteriores.">Primera version del framework personal de scraping, sentando las bases de los proyectos de automatizacion posteriores.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/WebScrapingV1" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="tools">
+                    <div class="card-inner">
+                        <div class="card-tag">Python · Notas · Aprendizaje</div>
+                        <h2>Programming Notes</h2>
+                        <p class="lang-text" data-en="Personal knowledge base: programming patterns, notes and code references across multiple languages." data-es="Base de conocimiento personal: patrones de programacion, notas y referencias de codigo en multiples lenguajes.">Base de conocimiento personal: patrones de programacion, notas y referencias de codigo en multiples lenguajes.</p>
+                        <div class="card-org"><i class="fa-brands fa-github"></i> Personal</div>
+                        <a href="https://github.com/KeviinYepes/programming-notes" target="_blank" rel="noreferrer" class="card-btn lang-text" data-en="View Project" data-es="Ver Proyecto">Ver Proyecto <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="Skills" id="skills_id">
+            <h1 class="section-title lang-text" data-en="Technical Skills" data-es="Habilidades Tecnicas">Habilidades Tecnicas</h1>
+
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3><i class="fa-solid fa-code"></i> Backend</h3>
                     <ul>
-                        <li>Python (Pandas, Flask)</li>
+                        <li>Python (Pandas, Flask, openpyxl, requests)</li>
                         <li>Zoho Deluge</li>
-                        <li>API Integration</li>
+                        <li>API Integration and REST</li>
+                        <li>Java (Android)</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fa-solid fa-robot"></i> Automation</h3>
+                    <h3><i class="fa-solid fa-robot"></i> <span class="lang-text" data-en="Automation" data-es="Automatizacion">Automatizacion</span></h3>
                     <ul>
-                        <li>Selenium</li>
+                        <li>Selenium WebDriver</li>
                         <li>Workflow Optimization</li>
                         <li>Web Scraping</li>
+                        <li>CAPTCHA Bypass Logic</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fa-solid fa-gears"></i> DevOps & Infra</h3>
+                    <h3><i class="fa-solid fa-gears"></i> DevOps and Infra</h3>
                     <ul>
-                        <li>Linux Admin</li>
-                        <li>Docker</li>
+                        <li>Linux Administration</li>
+                        <li>Docker (Logs and Troubleshooting)</li>
                         <li>CI/CD Pipelines</li>
+                        <li>GitHub Actions</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-globe"></i> Frontend and Tools</h3>
+                    <ul>
+                        <li>HTML · CSS · JavaScript</li>
+                        <li>Django / Flask Templates</li>
+                        <li>Tkinter (Desktop UI)</li>
+                        <li>Git and GitHub</li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="Contact" id="contact_id">
-            <div class="send_form">
-                <h2>Send me a message</h2>
-                <form action="{% url 'contact_view' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send</button>
-                </form>
+        <section class="Contact" id="contact_id">
+            <h1 class="section-title lang-text" data-en="Connect Player" data-es="Conectar Jugador">Conectar Jugador</h1>
+
+            <div class="contact-inner">
+                <div class="contact-gif-bg">
+                    <img
+                        src="https://media1.tenor.com/m/s33hs4W5nKwAAAAd/iori-yagami-kyo-kusanagi.gif"
+                        alt="KOF98 Iori vs Kyo"
+                        class="contact-kof-gif"
+                    >
+                    <div class="contact-gif-overlay"></div>
+                    <div class="send_form">
+                        <h2 class="lang-text" data-en="Send me a message" data-es="Enviame un mensaje">Enviame un mensaje</h2>
+
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+
+                        <form action="{% url 'home' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="name" class="lang-placeholder" data-en-ph="Your Name" data-es-ph="Tu Nombre" placeholder="Tu Nombre" required>
+                            <input type="email" name="email" class="lang-placeholder" data-en-ph="Your Email" data-es-ph="Tu Correo" placeholder="Tu Correo" required>
+                            <textarea name="message" class="lang-placeholder" data-en-ph="Your Message" data-es-ph="Tu Mensaje" placeholder="Tu Mensaje" required></textarea>
+                            <button type="submit" class="lang-text" data-en="Send" data-es="Enviar">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="contact-links">
+                    <p class="lang-text" data-en="Find me on:" data-es="Encuentrame en:">Encuentrame en:</p>
+                    <a href="https://www.linkedin.com/in/keviinyepes" target="_blank" rel="noreferrer" class="retro-btn">
+                        <i class="fa-brands fa-linkedin"></i> <span>[LINKEDIN]</span>
+                    </a>
+                    <a href="https://github.com/KeviinYepes" target="_blank" rel="noreferrer" class="retro-btn">
+                        <i class="fa-brands fa-github"></i> <span>[GITHUB]</span>
+                    </a>
+                </div>
             </div>
-            <h1>Connect Player</h1>
-            <div class="contact-buttons">
-                <a href="www.linkedin.com/in/keviinyepes" target="_blank" class="retro-btn">
-                    <i class="fa-brands fa-linkedin"></i> [LINKEDIN]
-                </a>
+        </section>
 
-                <a href="https://github.com/KeviinYepes" target="_blank" class="retro-btn">
-                    <i class="fa-brands fa-github"></i> [GITHUB]
-                </a>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p style="text-align: center;">Copyright © 2026 - KeviinYepes | All rights reserved</p>
-        </div>
+        <footer class="footer">
+            <p>Copyright &copy; 2026 - KeviinYepes | <span class="lang-text" data-en="All rights reserved" data-es="Todos los derechos reservados">Todos los derechos reservados</span></p>
+        </footer>
     </div>
-</body>
 
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+        const langBtn = document.getElementById('lang-toggle');
+        const langLabel = document.getElementById('current-lang-label');
+        let currentLang = 'es';
+
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('gaming-mode');
+            body.classList.toggle('normal-mode');
+            const isGaming = body.classList.contains('gaming-mode');
+
+            themeIcon.className = isGaming ? 'fa-solid fa-gamepad' : 'fa-solid fa-briefcase';
+            const themeLabel = themeBtn.querySelector('.lang-text');
+            themeLabel.setAttribute('data-es', isGaming ? 'MODO GAMING' : 'MODO NORMAL');
+            themeLabel.setAttribute('data-en', isGaming ? 'GAMING MODE' : 'NORMAL MODE');
+            themeLabel.innerText = themeLabel.getAttribute(`data-${currentLang}`);
+        });
+
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            langLabel.innerText = currentLang === 'es' ? 'EN' : 'ES';
+            document.querySelectorAll('.lang-text').forEach((el) => {
+                const value = el.getAttribute(`data-${currentLang}`);
+                if (value) {
+                    el.innerText = value;
+                }
+            });
+            document.querySelectorAll('.lang-placeholder').forEach((el) => {
+                const value = el.getAttribute(`data-${currentLang}-ph`);
+                if (value) {
+                    el.placeholder = value;
+                }
+            });
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navCenter = document.getElementById('navCenter');
+        hamburger.addEventListener('click', () => {
+            navCenter.classList.toggle('open');
+            hamburger.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach((link) => {
+            link.addEventListener('click', () => {
+                navCenter.classList.remove('open');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        function animateCounters() {
+            document.querySelectorAll('.num').forEach((el) => {
+                const target = Number(el.dataset.target);
+                let current = 0;
+                const step = Math.ceil(target / 40);
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    el.textContent = `${current}${target === 100 ? '' : '+'}`;
+                }, 40);
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.classList.contains('num-stats')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.project-card, .skill-category, .num-stats, .About_me p').forEach((el) => {
+            observer.observe(el);
+        });
+
+        function createParticles() {
+            const container = document.getElementById('bgParticles');
+            container.innerHTML = '';
+            for (let i = 0; i < 30; i += 1) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 10 + 8}s`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                const size = `${Math.random() * 4 + 2}px`;
+                particle.style.width = size;
+                particle.style.height = size;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        document.querySelectorAll('.filter-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach((filterBtn) => filterBtn.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('.project-card').forEach((card) => {
+                    const categories = card.dataset.category || '';
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
 </html>
